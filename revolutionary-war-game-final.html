@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revolutionary Soldier: A Survival Story (1775-1781)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&family=Fondamento:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --parchment: #F4E4C1;
+            --dark-parchment: #E8D4A8;
+            --continental-blue: #1E3A5F;
+            --british-red: #8B0000;
+            --aged-brown: #4A3B2A;
+            --gold: #D4A574;
+            --shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'IM Fell English', serif;
+            background: linear-gradient(135deg, #8B7355 0%, #5C4A3A 100%);
+            color: var(--aged-brown);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* MAYER'S COHERENCE PRINCIPLE: Remove extraneous content, focus on essential information */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--parchment);
+            border: 4px solid var(--aged-brown);
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+        }
+
+        /* MAYER'S SIGNALING PRINCIPLE: Visual cues to guide attention */
+        header {
+            background: linear-gradient(to bottom, var(--continental-blue), #2A4A6F);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px double var(--gold);
+            position: relative;
+        }
+
+        header::before,
+        header::after {
+            content: '★';
+            position: absolute;
+            font-size: 2rem;
+            color: var(--gold);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        header::before { left: 20px; }
+        header::after { right: 20px; }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: var(--parchment);
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        /* MAYER'S SEGMENTING PRINCIPLE: Break content into manageable chunks */
+        .content {
+            padding: 35px;
+            position: relative;
+        }
+
+        .phase {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .phase.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* MAYER'S SIGNALING + SPATIAL CONTIGUITY: Headers clearly separate sections */
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.7rem;
+            color: var(--british-red);
+            margin-bottom: 18px;
+            text-align: center;
+            border-bottom: 3px solid var(--aged-brown);
+            padding-bottom: 8px;
+            background: var(--dark-parchment);
+            padding: 12px;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--continental-blue);
+            margin: 20px 0 12px 0;
+        }
+
+        /* MAYER'S MULTIMEDIA PRINCIPLE: Text + visuals together */
+        /* COGNITIVE LOAD: Clear, simple text for 5th graders */
+        .intro-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* MAYER'S SPATIAL CONTIGUITY: Related text and images close together */
+        .info-box {
+            background: var(--dark-parchment);
+            border: 3px solid var(--continental-blue);
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .info-box.important {
+            border-color: var(--british-red);
+            background: #FFF8E7;
+        }
+
+        /* MAYER'S PRE-TRAINING PRINCIPLE: Key vocabulary explained upfront */
+        .vocab-term {
+            font-weight: bold;
+            color: var(--continental-blue);
+            cursor: help;
+            border-bottom: 2px dotted var(--continental-blue);
+        }
+
+        /* COGNITIVE LOAD: Simple, organized selection grid */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .selection-item {
+            background: white;
+            border: 3px solid var(--aged-brown);
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .selection-item:hover {
+            background: var(--dark-parchment);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow);
+            border-color: var(--continental-blue);
+        }
+
+        /* MAYER'S SIGNALING: Selected items clearly marked */
+        .selection-item.selected {
+            background: var(--gold);
+            border-color: var(--british-red);
+            border-width: 4px;
+            box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
+        }
+
+        .item-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--british-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .item-icon {
+            font-size: 1.3rem;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: var(--aged-brown);
+        }
+
+        /* MAYER'S SIGNALING: Color-coded benefits/drawbacks */
+        .item-benefits {
+            font-size: 0.9rem;
+            color: #2d5016;
+            margin-bottom: 5px;
+        }
+
+        .item-benefits::before {
+            content: '✓ ';
+            font-weight: bold;
+        }
+
+        .item-drawbacks {
+            font-size: 0.9rem;
+            color: var(--british-red);
+        }
+
+        .item-drawbacks::before {
+            content: '✗ ';
+            font-weight: bold;
+        }
+
+        /* COGNITIVE LOAD: Large, clear buttons */
+        .button {
+            background: var(--continental-blue);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            padding: 16px 45px;
+            border: 3px solid var(--aged-brown);
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        .button:hover {
+            background: var(--british-red);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* MAYER'S SIGNALING: Clear counter for selections */
+        .counter {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 18px 0;
+            color: var(--british-red);
+            font-weight: 600;
+            background: var(--dark-parchment);
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid var(--aged-brown);
+        }
+
+        /* COGNITIVE LOAD: Organized stats display */
+        .game-stats {
+            background: white;
+            border: 4px double var(--continental-blue);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 2px dotted var(--aged-brown);
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--continental-blue);
+            font-size: 1.05rem;
+        }
+
+        .stat-value {
+            text-align: right;
+            flex: 1;
+            font-size: 1.05rem;
+        }
+
+        /* MAYER'S MULTIMEDIA + TEMPORAL CONTIGUITY: Battle info organized visually */
+        .battle-header {
+            background: linear-gradient(to right, var(--continental-blue), #2A4A6F);
+            color: white;
+            padding: 20px;
+            margin: -35px -35px 25px -35px;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .battle-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+
+        .battle-date {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--parchment);
+        }
+
+        /* MAYER'S MULTIMEDIA: Maps and text together */
+        .battle-info {
+            background: white;
+            padding: 20px;
+            border: 3px solid var(--continental-blue);
+            border-radius: 8px;
+        }
+
+        /* MAYER'S SIGNALING: Map with clear visual hierarchy */
+        .map-container {
+            background: var(--dark-parchment);
+            padding: 15px;
+            border: 3px solid var(--aged-brown);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            min-height: 350px;
+            background: white;
+            border: 2px solid var(--aged-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--aged-brown);
+            font-size: 0.95rem;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .map-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border: 2px solid var(--aged-brown);
+            background: white;
+        }
+
+        .map-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* COGNITIVE LOAD: Clear scenario categories with icons */
+        .scenario-box {
+            background: white;
+            border: 4px solid var(--aged-brown);
+            padding: 22px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .scenario-box.planning {
+            border-color: var(--continental-blue);
+            background: #E8F4F8;
+        }
+
+        .scenario-box.combat {
+            border-color: var(--british-red);
+            background: #FFF0F0;
+        }
+
+        .scenario-box.aftermath {
+            border-color: var(--gold);
+            background: #FFF8E7;
+        }
+
+        .scenario-category {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-category.planning { color: var(--continental-blue); }
+        .scenario-category.combat { color: var(--british-red); }
+        .scenario-category.aftermath { color: #8B6914; }
+
+        .scenario-category-icon {
+            font-size: 1.5rem;
+        }
+
+        .scenario-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        /* MAYER'S MODALITY: Visual + auditory (dice animation) */
+        .dice-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: var(--dark-parchment);
+            border-radius: 8px;
+        }
+
+        .dice {
+            font-size: 5rem;
+            margin: 15px;
+            display: inline-block;
+            animation: roll 0.6s ease-in-out;
+        }
+
+        @keyframes roll {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            75% { transform: rotate(270deg) scale(1.1); }
+        }
+
+        /* MAYER'S SIGNALING: Clear result indicators */
+        .result-box {
+            background: white;
+            border: 4px solid var(--aged-brown);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .result-box.survived {
+            border-color: #2d5016;
+            background: #d4edda;
+        }
+
+        .result-box.wounded {
+            border-color: #8B6914;
+            background: #fff3cd;
+        }
+
+        .result-box.killed {
+            border-color: var(--british-red);
+            background: #f8d7da;
+        }
+
+        .result-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .result-icon {
+            font-size: 3rem;
+            text-align: center;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* COGNITIVE LOAD: Simple, organized feedback */
+        .feedback {
+            line-height: 1.8;
+            margin: 15px 0;
+            font-size: 1.05rem;
+        }
+
+        .feedback strong {
+            color: var(--continental-blue);
+        }
+
+        .feedback-section {
+            margin: 25px 0;
+            background: white;
+            padding: 20px;
+            border-left: 5px solid var(--continental-blue);
+            border-radius: 5px;
+        }
+
+        .feedback-section h3 {
+            margin-top: 0;
+        }
+
+        .feedback-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feedback-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .feedback-list li::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--continental-blue);
+            font-weight: bold;
+        }
+
+        /* MAYER'S SIGNALING: Color-coded feedback */
+        .positive {
+            color: #2d5016;
+            font-weight: 600;
+        }
+
+        .negative {
+            color: var(--british-red);
+            font-weight: 600;
+        }
+
+        .neutral {
+            color: var(--aged-brown);
+        }
+
+        /* COGNITIVE LOAD: Clear progress indicator */
+        .progress-bar {
+            background: var(--dark-parchment);
+            height: 30px;
+            border: 2px solid var(--aged-brown);
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(to right, var(--continental-blue), #4A6A8F);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .round-counter {
+            text-align: center;
+            font-size: 1.4rem;
+            font-family: 'Cinzel', serif;
+            color: var(--british-red);
+            margin: 20px 0;
+            background: var(--dark-parchment);
+            padding: 15px;
+            border-radius: 8px;
+            border: 3px solid var(--aged-brown);
+        }
+
+        /* MAYER'S COHERENCE: Simple, focused bonus display */
+        .bonus-breakdown {
+            background: var(--dark-parchment);
+            padding: 18px;
+            margin: 18px 0;
+            border-left: 5px solid var(--continental-blue);
+            border-radius: 5px;
+        }
+
+        .bonus-item {
+            padding: 8px 0;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bonus-value {
+            font-weight: bold;
+        }
+
+        .bonus-value.positive { color: #2d5016; }
+        .bonus-value.negative { color: var(--british-red); }
+
+        /* COGNITIVE LOAD: Primary source quotes clearly marked */
+        .primary-source {
+            background: var(--dark-parchment);
+            border-left: 5px solid var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Fondamento', italic;
+            font-size: 1.1rem;
+            border-radius: 5px;
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            line-height: 0;
+        }
+
+        .primary-source-attribution {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            font-family: 'IM Fell English', serif;
+            font-style: normal;
+            color: var(--aged-brown);
+        }
+
+        /* MAYER'S SEGMENTING: Clear section dividers */
+        .section-divider {
+            border-top: 3px solid var(--aged-brown);
+            border-bottom: 3px solid var(--aged-brown);
+            padding: 15px 0;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        /* Reflection section */
+        .reflection-section {
+            background: white;
+            border: 4px solid var(--continental-blue);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .reflection-question {
+            background: var(--dark-parchment);
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--continental-blue);
+            border-radius: 5px;
+        }
+
+        .reflection-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 2px solid var(--aged-brown);
+            border-radius: 5px;
+            font-family: 'IM Fell English', serif;
+            font-size: 1rem;
+            margin-top: 10px;
+            resize: vertical;
+        }
+
+        /* Final score display */
+        .final-score {
+            font-size: 2rem;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--british-red);
+            font-family: 'Cinzel', serif;
+            background: var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+            border: 4px solid var(--aged-brown);
+        }
+
+        .medal {
+            font-size: 4rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* COGNITIVE LOAD: Responsive design for readability */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6rem; }
+            .content { padding: 20px; }
+            .selection-grid { grid-template-columns: 1fr; }
+            .battle-content { grid-template-columns: 1fr; }
+            .battle-header { margin: -20px -20px 20px -20px; }
+        }
+
+        /* MAYER'S SIGNALING: Tooltip for help */
+        .help-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: var(--continental-blue);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.8rem;
+            cursor: help;
+            margin-left: 5px;
+        }
+
+        /* Loading indicator for videos */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: var(--aged-brown);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔ Revolutionary Soldier ⚔</h1>
+            <p class="subtitle">A Survival Story: The American Revolution (1775-1781)</p>
+        </header>
+
+        <div class="content">
+            <!-- Phase 1: Introduction -->
+            <div id="phase-intro" class="phase active">
+                <h2>Welcome, Future Patriot!</h2>
+                
+                <div class="info-box important">
+                    <p class="intro-text">
+                        <strong>Your Mission:</strong> You are about to become a soldier in the Continental Army during the American Revolution. You will fight in 10 major battles from 1775 to 1781.
+                    </p>
+                </div>
+
+                <p class="intro-text">
+                    In 1775, American colonists decided to fight for independence from Great Britain. For six long years, farmers, shopkeepers, and young men like you became soldiers. They faced the most powerful army in the world with little training, few supplies, and no guarantee of victory.
+                </p>
+
+                <p class="intro-text">
+                    <strong>How This Game Works:</strong>
+                </p>
+                <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 1.8;">
+                    <li>You'll choose <span class="vocab-term">attributes</span> (special skills) and supplies for your soldier</li>
+                    <li>You'll learn about 10 real battles through maps and videos</li>
+                    <li>You'll roll dice to see if you survive each battle</li>
+                    <li>Your choices will help or hurt your chances</li>
+                    <li>You'll discover what really happened and why it mattered</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><strong>Important:</strong> This game teaches real history. The battles, commanders, and challenges are all real. Your soldier is fictional, but the war was very real.</p>
+                </div>
+
+                <button class="button" onclick="startGame()">Begin Your Journey</button>
+            </div>
+
+            <!-- Phase 2: Attribute Selection -->
+            <div id="phase-attributes" class="phase">
+                <h2>Choose Your Soldier's Skills</h2>
+                
+                <div class="info-box">
+                    <p class="intro-text">
+                        Every soldier had different skills and strengths. Choose <strong>2 attributes</strong> that describe your soldier's special abilities. Each choice will help in some battles but might hurt in others!
+                    </p>
+                </div>
+
+                <div class="counter">
+                    <span style="font-size: 1.4rem;">⚔</span> 
+                    Selected: <span id="attr-count">0</span> / 2
+                </div>
+
+                <div class="selection-grid" id="attributes-grid"></div>
+
+                <button class="button" id="attr-continue" onclick="continueToSupplies()" disabled>
+                    Continue to Supplies →
+                </button>
+            </div>
+
+            <!-- Phase 3: Supply Selection -->
+            <div id="phase-supplies" class="phase">
+                <h2>Choose Your Supplies</h2>
+                
+                <div class="info-box">
+                    <p class="intro-text">
+                        Continental soldiers often didn't have enough food, clothing, or equipment. Choose <strong>5 supplies</strong> to bring with you. Choose wisely—you can't carry everything!
+                    </p>
+                </div>
+
+                <div class="counter">
+                    <span style="font-size: 1.4rem;">🎒</span> 
+                    Selected: <span id="supply-count">0</span> / 5
+                </div>
+
+                <div class="selection-grid" id="supplies-grid"></div>
+
+                <button class="button" id="supply-continue" onclick="startBattles()" disabled>
+                    Begin the War →
+                </button>
+            </div>
+
+            <!-- Phase 4: Battle Rounds -->
+            <div id="phase-battle" class="phase">
+                <div id="battle-content"></div>
+            </div>
+
+            <!-- Phase 5: Final Results & Reflection -->
+            <div id="phase-results" class="phase">
+                <h2>Your Revolutionary War Journey</h2>
+                <div id="final-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // MAYER'S PRE-TRAINING: Define key terms and concepts upfront
+        const ATTRIBUTES = [
+            { 
+                name: "Sharpshooter",
+                icon: "🎯",
+                description: "You are an excellent shot with your musket and can hit targets others miss.",
+                benefits: "Helps in combat situations",
+                drawbacks: "Less helpful for survival challenges",
+                bonuses: { planning: 1, combat: 3, aftermath: 0, survival: -2 }
+            },
+            { 
+                name: "Field Medic",
+                icon: "⚕️",
+                description: "You know how to treat wounds and sickness with herbs and bandages.",
+                benefits: "Helps after battles and with survival",
+                drawbacks: "Not focused on fighting",
+                bonuses: { planning: 0, combat: -2, aftermath: 3, survival: 2 }
+            },
+            { 
+                name: "Scout/Ranger",
+                icon: "🔭",
+                description: "You are good at finding paths, reading signs, and surviving in the wilderness.",
+                benefits: "Helps with planning and survival",
+                drawbacks: "Less helpful after battles",
+                bonuses: { planning: 3, combat: 0, aftermath: -1, survival: 2 }
+            },
+            { 
+                name: "Natural Leader",
+                icon: "⭐",
+                description: "Other soldiers look up to you and follow your example during hard times.",
+                benefits: "Helps in many situations",
+                drawbacks: "You put others first, risking yourself",
+                bonuses: { planning: 2, combat: 1, aftermath: 2, survival: -3 }
+            },
+            { 
+                name: "Experienced Veteran",
+                icon: "🎖️",
+                description: "You fought in the French and Indian War, so you know how battles work.",
+                benefits: "Helps with planning and combat",
+                drawbacks: "Old injuries slow your recovery",
+                bonuses: { planning: 2, combat: 3, aftermath: -2, survival: 0 }
+            },
+            { 
+                name: "Patriot Zealot",
+                icon: "🗽",
+                description: "You deeply believe in American independence and never give up.",
+                benefits: "Boosts morale after battles",
+                drawbacks: "Passion over caution in planning",
+                bonuses: { planning: -2, combat: 1, aftermath: 4, survival: 0 }
+            },
+            { 
+                name: "Survivalist",
+                icon: "🏕️",
+                description: "You grew up on the frontier and know how to hunt, fish, and survive outdoors.",
+                benefits: "Excellent for survival challenges",
+                drawbacks: "Not trained for military combat",
+                bonuses: { planning: 1, combat: -2, aftermath: 0, survival: 4 }
+            },
+            { 
+                name: "Engineer",
+                icon: "🛠️",
+                description: "You understand how to build fortifications and use artillery cannons.",
+                benefits: "Helps with planning and combat",
+                drawbacks: "Technical focus, less survival skills",
+                bonuses: { planning: 3, combat: 2, aftermath: 0, survival: -2 }
+            }
+        ];
+
+        const SUPPLIES = [
+            { 
+                name: "Extra Ammunition",
+                icon: "💣",
+                description: "Extra musket balls and gunpowder for your weapon.",
+                benefits: "Very helpful in combat",
+                drawbacks: "Heavy to carry, less room for food",
+                bonuses: { planning: 0, combat: 3, aftermath: 0, survival: -1 }
+            },
+            { 
+                name: "Warm Blanket",
+                icon: "🧣",
+                description: "A thick wool blanket to keep warm in winter camps.",
+                benefits: "Essential for survival in cold weather",
+                drawbacks: "Bulky during summer battles",
+                bonuses: { planning: 0, combat: -1, aftermath: 1, survival: 4 }
+            },
+            { 
+                name: "Medical Supplies",
+                icon: "⚕️",
+                description: "Bandages, herbs, and medicine to treat wounds and sickness.",
+                benefits: "Helps you recover after battles and stay healthy",
+                drawbacks: "Less helpful in planning strategy",
+                bonuses: { planning: -1, combat: 0, aftermath: 3, survival: 2 }
+            },
+            { 
+                name: "Extra Rations",
+                icon: "🍞",
+                description: "Dried beef, hardtack biscuits, and other preserved food.",
+                benefits: "Helps survival and recovery",
+                drawbacks: "Heavy weight slows you in combat",
+                bonuses: { planning: 0, combat: -1, aftermath: 1, survival: 3 }
+            },
+            { 
+                name: "Spyglass & Maps",
+                icon: "🗺️",
+                description: "A telescope to see far away and maps showing terrain.",
+                benefits: "Excellent for planning and spotting enemies",
+                drawbacks: "Not practical for basic survival",
+                bonuses: { planning: 3, combat: 1, aftermath: 0, survival: -1 }
+            },
+            { 
+                name: "Writing Materials",
+                icon: "✍️",
+                description: "Paper, ink, and quills to write letters home and keep a journal.",
+                benefits: "Boosts morale by staying connected to home",
+                drawbacks: "Doesn't help in combat or planning",
+                bonuses: { planning: -1, combat: -2, aftermath: 3, survival: 0 }
+            },
+            { 
+                name: "Bayonet",
+                icon: "🗡️",
+                description: "A long knife that attaches to your musket for close combat.",
+                benefits: "Very helpful in combat and as a tool",
+                drawbacks: "Aggressive focus, less helpful after battles",
+                bonuses: { planning: 0, combat: 3, aftermath: -1, survival: 1 }
+            },
+            { 
+                name: "Lucky Charm",
+                icon: "📿",
+                description: "A Bible, locket, or special item that gives you courage.",
+                benefits: "Small bonus to everything (morale boost)",
+                drawbacks: "Superstition instead of planning",
+                bonuses: { planning: -1, combat: 1, aftermath: 2, survival: 1 }
+            },
+            { 
+                name: "Tinderbox & Firewood",
+                icon: "🔥",
+                description: "Flint, steel, and dry wood to start fires for cooking and warmth.",
+                benefits: "Essential for survival and planning camps",
+                drawbacks: "Bulky and heavy in combat",
+                bonuses: { planning: 2, combat: -1, aftermath: 0, survival: 3 }
+            },
+            { 
+                name: "Trusted Horse",
+                icon: "🐴",
+                description: "A strong horse that can carry supplies and help you move quickly.",
+                benefits: "Major advantages in multiple areas",
+                drawbacks: "Must feed and care for the horse",
+                bonuses: { planning: 2, combat: 2, aftermath: -3, survival: 2 }
+            }
+        ];
+
+        // COGNITIVE LOAD: Break battles into manageable chunks with clear categories
+        const BATTLES = [
+            {
+                id: 1,
+                name: "Lexington & Concord",
+                date: "April 19, 1775",
+                location: "Massachusetts",
+                subtitle: "The Shot Heard Round the World",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/2023-11/Lexington_Concord_Parker%27s_Revenge_British_Retreat_Oct_2020.jpg",
+                mapDescription: "British troops marched from Boston to Concord to seize colonial weapons. Paul Revere and William Dawes rode ahead to warn the militia. The first fighting happened at Lexington Green, then Concord Bridge. Colonists fired from behind trees and walls as the British retreated to Boston.",
+                historicalContext: [
+                    "The British army wanted to capture weapons the colonists had stored in Concord.",
+                    "Paul Revere and William Dawes rode through the night warning: 'The British are coming!'",
+                    "This was the first fighting of the American Revolution."
+                ],
+                keyCommanders: [
+                    { name: "Captain John Parker", side: "Colonial", role: "Led militia at Lexington Green" },
+                    { name: "Colonel James Barrett", side: "Colonial", role: "Led militia at Concord" },
+                    { name: "Lieutenant Colonel Francis Smith", side: "British", role: "Led British troops from Boston" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "You are with Captain Parker's militia on Lexington Green. 700 British soldiers in red coats are marching toward you. Your captain says: 'Stand your ground. Don't fire unless fired upon.' But there are only 77 of you! The British are getting closer. What do you do?",
+                    threshold: 14,
+                    explanation: "The colonists were badly outnumbered at Lexington. Most militia scattered after the first shots. But at Concord Bridge, more militia arrived and drove the British back to Boston. This showed that colonists could fight professional soldiers."
+                },
+                outcome: "The British won at Lexington but were forced to retreat from Concord. Colonists fired from behind trees and walls all the way back to Boston—16 miles! The British lost 273 men, colonists lost 95. The war had begun!",
+                significance: "This battle showed that Americans were willing to fight for their rights. It started the Revolutionary War. The phrase 'shot heard round the world' means this battle's impact spread everywhere.",
+                primarySource: {
+                    quote: "Stand your ground. Don't fire unless fired upon, but if they mean to have a war, let it begin here.",
+                    attribution: "Captain John Parker at Lexington Green"
+                },
+                didYouKnow: "Nobody knows who fired the first shot at Lexington. Both sides blamed each other. Some historians think it might have been an accident! That's why it's called 'the shot heard round the world'—it started a revolution but no one knows who fired it."
+            },
+            {
+                id: 2,
+                name: "Bunker Hill",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Bunker_Hill_June_17_1775_Oct_2020_0.jpg",
+                date: "June 17, 1775",
+                location: "Charlestown, Massachusetts",
+                subtitle: "Don't Fire Until You See the Whites of Their Eyes",
+                mapDescription: "Colonial forces built a fort on Breed's Hill (next to Bunker Hill) overnight. British General Howe ordered his troops to attack uphill. Colonists waited until the British were very close before firing. The British attacked three times—the third attack succeeded when colonists ran out of ammunition.",
+                historicalContext: [
+                    "After Lexington and Concord, colonists surrounded Boston where British forces were trapped.",
+                    "Colonists built a fort on Breed's Hill (next to Bunker Hill) overnight.",
+                    "British General Howe decided to attack uphill to drive them away."
+                ],
+                keyCommanders: [
+                    { name: "Colonel William Prescott", side: "Colonial", role: "Commanded fort on Breed's Hill" },
+                    { name: "General Israel Putnam", side: "Colonial", role: "Famous for 'whites of their eyes' quote" },
+                    { name: "General William Howe", side: "British", role: "Led British attack uphill" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "You are behind the colonial fort on Breed's Hill. British soldiers in perfect red lines are marching up the hill. Drums are beating. Your ammunition is running low—you only have a few shots left. Your commander shouts: 'Don't fire until you see the whites of their eyes!' The British keep coming closer. Your hands are shaking. Do you shoot early or wait?",
+                    threshold: 17,
+                    explanation: "Colonists had very little gunpowder, so they had to make every shot count. They waited until the British were very close (50 feet!), then fired. The British retreated twice! But on the third attack, colonists ran out of ammunition and had to retreat."
+                },
+                outcome: "The British won and took the hill, but they lost over 1,000 men—almost half their army! The colonists lost only 450 soldiers. British officers were shocked at how well the colonists fought.",
+                significance: "This battle proved that colonial militia could stand up to trained British soldiers in a real battle. Even though the British won, they learned the colonists would fight hard. It gave Americans confidence that they could win the war.",
+                primarySource: {
+                    quote: "The rebels fought like devils, not like men. I never saw such determined fighters.",
+                    attribution: "British officer after the battle"
+                },
+                didYouKnow: "The battle was actually fought on Breed's Hill, not Bunker Hill! But it's called the Battle of Bunker Hill because that's what people called it from the beginning. Bunker Hill is taller and nearby, so everyone thought that's where the fighting was."
+            },
+            {
+                id: 3,
+                name: "Siege of Boston",
+                mapUrl: "https://www.nps.gov/common/uploads/place/nri/20090724/places/B3AE8FC7-0C70-4E62-98ECF0F0F63FD7C6/B3AE8FC7-0C70-4E62-98ECF0F0F63FD7C6.jpg",
+                date: "April 1775 - March 1776",
+                location: "Boston, Massachusetts",
+                subtitle: "Washington Takes Command",
+                mapDescription: "George Washington arrived to take command of the Continental Army surrounding Boston. Henry Knox traveled 300 miles to Fort Ticonderoga and brought back 59 cannons weighing thousands of pounds—in the middle of winter! When Washington placed these cannons on Dorchester Heights overlooking Boston, the British knew they had to leave.",
+                historicalContext: [
+                    "After Bunker Hill, George Washington arrived to take command of the Continental Army.",
+                    "He needed to force the British out of Boston, but he didn't have enough cannons.",
+                    "Henry Knox traveled 300 miles to bring cannons from Fort Ticonderoga in winter!"
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "New commander of Continental Army" },
+                    { name: "Henry Knox", side: "Continental", role: "Brought cannons from Fort Ticonderoga" },
+                    { name: "General William Howe", side: "British", role: "British commander trapped in Boston" }
+                ],
+                scenario: {
+                    category: "planning",
+                    description: "You are helping move 59 huge cannons across 300 miles of mountains, forests, and frozen lakes. It's the middle of winter—freezing cold! Each cannon weighs thousands of pounds. Oxen are pulling sleds across the ice, but sometimes the ice cracks. Some soldiers want to give up and leave the heavy cannons behind. Winter is brutal. Do you keep going?",
+                    threshold: 15,
+                    explanation: "Henry Knox's 'noble train of artillery' was an amazing feat. In the dead of winter, soldiers dragged huge cannons over mountains and across frozen lakes. It took two months, but they made it! This showed that determination and clever planning could win battles without fighting."
+                },
+                outcome: "When Washington placed the cannons on Dorchester Heights overlooking Boston, the British realized they couldn't stay. In March 1776, British General Howe evacuated his entire army by ship. They left Boston and never came back! Washington won without a major battle.",
+                significance: "This was Washington's first major success as commander. It showed that strategy and determination could win without fighting a big battle. Boston became the first major American victory. The British navy had to find a different base.",
+                primarySource: {
+                    quote: "The rebels have done more in one night than my whole army would have done in months.",
+                    attribution: "British General Howe, seeing the cannons on Dorchester Heights"
+                },
+                didYouKnow: "Henry Knox was only 25 years old and used to own a bookstore! He learned about artillery by reading books. He figured out how to move 60 tons of cannons across 300 miles in winter. Later he became Washington's Secretary of War!"
+            },
+            {
+                id: 4,
+                name: "Battle of Long Island",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Brooklyn_Aug_27_1776_Oct_2020_0.jpg",
+                date: "August 27, 1776",
+                location: "Brooklyn, New York",
+                subtitle: "The Disaster in New York",
+                mapDescription: "Washington's army was defending New York. British General Howe landed 32,000 troops on Long Island—the largest battle of the entire war! British forces surrounded the Americans on three sides, with their backs to the East River. Washington organized a nighttime retreat, using boats to evacuate 9,000 men across the river in fog and darkness.",
+                historicalContext: [
+                    "Just weeks after the Declaration of Independence was signed, the British attacked New York.",
+                    "This was the largest battle of the Revolutionary War—32,000 British troops!",
+                    "Washington's army was surrounded and could have been destroyed."
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "Commander trying to defend New York" },
+                    { name: "General William Howe", side: "British", role: "Led massive British attack" },
+                    { name: "General Henry Clinton", side: "British", role: "Helped surround Americans" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "You are trapped with Washington's army on Brooklyn Heights. British forces have surrounded you on three sides. Your back is to the East River—there's no escape! British cannons are firing. You're outnumbered 3 to 1. Night is falling. Washington orders a secret retreat by boat across the river, but if the British discover it, you'll all be captured or killed. Do you trust the plan?",
+                    threshold: 16,
+                    explanation: "Washington's army was in terrible danger—surrounded and outnumbered. But Washington organized one of history's great escapes! In one night, using every boat they could find, they evacuated 9,000 men across the East River. A thick fog appeared at dawn, hiding the last boats from British view!"
+                },
+                outcome: "Washington lost the battle but saved his army through a brilliant nighttime retreat. He evacuated 9,000 soldiers, supplies, and cannons across the East River without the British knowing. If he hadn't, the war might have ended right there!",
+                significance: "This battle showed that strategic retreat can save an army to fight another day. Washington learned that he couldn't win every battle, but he could keep his army alive. Losing New York was painful, but saving the army was crucial. Sometimes the best strategy is to retreat and live to fight again.",
+                primarySource: {
+                    quote: "I fear we have not acted equal to the importance of the cause in which we are engaged.",
+                    attribution: "George Washington after retreating from Long Island"
+                },
+                didYouKnow: "A mysterious fog appeared at dawn on August 30th, hiding the last American boats from British view. Many soldiers thought it was a miracle! Historians debate whether it was luck or weather, but that fog saved the Continental Army."
+            },
+            {
+                id: 5,
+                name: "Crossing the Delaware / Battle of Trenton",
+                mapUrl: "https://www.mountvernon.org/site/images/medium/69d8a3c72d.png",
+                date: "December 25-26, 1776",
+                location: "Trenton, New Jersey",
+                subtitle: "Washington's Boldest Move",
+                mapDescription: "After losing New York, Washington retreated across New Jersey. His army was falling apart—enlistments were ending, soldiers were leaving. On Christmas night 1776, Washington crossed the icy Delaware River with 2,400 men. They marched 9 miles through a blizzard to surprise Hessian soldiers in Trenton at dawn.",
+                historicalContext: [
+                    "By December 1776, the Continental Army was in terrible shape. They'd lost New York and retreated.",
+                    "Soldiers' enlistments were ending on December 31st—the army would disappear!",
+                    "Washington desperately needed a victory to keep the cause alive."
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "Planned daring Christmas attack" },
+                    { name: "Colonel Johann Rall", side: "Hessian (German)", role: "Led Hessian forces in Trenton" },
+                    { name: "General Nathanael Greene", side: "Continental", role: "Led one attacking column" }
+                ],
+                scenario: {
+                    category: "survival",
+                    description: "It's Christmas night, 1776. You're crossing the icy Delaware River in a small boat. Chunks of ice slam into the sides. It's snowing hard and freezing cold. Many soldiers don't have shoes—their feet are bleeding. After crossing, you must march 9 miles through a blizzard to attack at dawn. Some soldiers have frozen to death already. Two soldiers ask: 'Should we turn back?' What do you say?",
+                    threshold: 15,
+                    explanation: "This was one of the most dangerous operations of the war. Crossing an icy river in winter storms, then marching 9 miles in a blizzard—many thought it was impossible. But Washington knew they needed a victory or the Revolution would die. Thomas Paine's words inspired them: 'These are the times that try men's souls.'"
+                },
+                outcome: "Washington's surprise attack worked perfectly! The Hessians were still celebrating Christmas and were caught completely off guard. Americans captured 900 Hessian soldiers and lost only 5 men. It was exactly the victory Washington needed.",
+                significance: "This victory saved the Revolution. Soldiers who were about to go home re-enlisted. Americans who had given up hope believed again. It showed that Washington was a brilliant tactician who could win against the odds. This is why the painting of 'Washington Crossing the Delaware' is so famous!",
+                primarySource: {
+                    quote: "These are the times that try men's souls. The summer soldier and the sunshine patriot will, in this crisis, shrink from the service of their country.",
+                    attribution: "Thomas Paine, written just before the Delaware crossing"
+                },
+                didYouKnow: "The famous painting 'Washington Crossing the Delaware' shows daytime with a flag that didn't exist yet! The real crossing was at night, in a blizzard, with no flags flying. But the painting captures the courage it took to make this bold move."
+            },
+            {
+                id: 6,
+                name: "Battle of Saratoga",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Saratoga_Sept_19_Oct_7_Oct_2020.jpg",
+                date: "September 19 - October 17, 1777",
+                location: "Saratoga, New York",
+                subtitle: "The Turning Point",
+                mapDescription: "British General Burgoyne was marching south from Canada with 8,000 men, trying to cut New England off from the other colonies. American forces under General Gates blocked him near Saratoga. After two major battles (Freeman's Farm and Bemis Heights), Burgoyne was surrounded. On October 17, he surrendered his entire army—5,000 men!",
+                historicalContext: [
+                    "The British had a plan: three armies would meet in New York and cut off New England.",
+                    "But only Burgoyne's army came. The other two armies didn't show up!",
+                    "This battle convinced France to become America's ally."
+                ],
+                keyCommanders: [
+                    { name: "General Horatio Gates", side: "Continental", role: "Commanded American forces" },
+                    { name: "Benedict Arnold", side: "Continental", role: "Led heroic charges (before he became a traitor!)" },
+                    { name: "General John Burgoyne", side: "British", role: "Led British invasion from Canada" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "You're fighting in the second battle at Bemis Heights. Benedict Arnold (still a hero at this time) is leading a bold charge even though he's been ordered not to! He's rallying soldiers: 'Come on, brave boys!' British lines are breaking. Arnold's horse is shot and falls on his leg, but Americans are winning. The British are surrounded. Should you press the attack?",
+                    threshold: 16,
+                    explanation: "Saratoga was actually two battles fought three weeks apart. The first battle (Freeman's Farm) was close. But the second battle (Bemis Heights) was an American victory. Benedict Arnold was the hero—he led charges that broke British lines. British General Burgoyne realized he was surrounded with no help coming."
+                },
+                outcome: "On October 17, 1777, British General Burgoyne surrendered his entire army of 5,000 men. This was the first time an entire British army surrendered! The Americans won a complete victory.",
+                significance: "This was THE turning point of the Revolutionary War. When France heard about this victory, they decided to help America! French money, weapons, ships, and soldiers would help America win the war. Without Saratoga, there might not be a United States today.",
+                primarySource: {
+                    quote: "The fortunes of war have made me your prisoner.",
+                    attribution: "British General Burgoyne surrendering to General Gates"
+                },
+                didYouKnow: "Benedict Arnold was the hero of Saratoga! He was wounded in the leg during his brave charges. But three years later, he became America's most famous traitor by trying to sell West Point to the British. At Saratoga, though, he helped win America's most important victory."
+            },
+            {
+                id: 7,
+                name: "Valley Forge",
+                mapUrl: "https://www.nps.gov/vafo/learn/historyculture/images/Map-Encampment.jpg",
+                date: "December 1777 - June 1778",
+                location: "Valley Forge, Pennsylvania",
+                subtitle: "The Winter of Suffering",
+                isWinterSurvival: true,
+                mapDescription: "After losing Philadelphia to the British, Washington's army made winter camp at Valley Forge, 20 miles away. It wasn't a battlefield—it was a test of endurance. Soldiers lived in log cabins they built themselves. Snow was everywhere. Food was scarce. About 2,000 soldiers died from cold, hunger, and disease—not from fighting!",
+                historicalContext: [
+                    "After losing Philadelphia to the British, Washington's army camped at Valley Forge for the winter.",
+                    "It was one of the coldest winters on record. Soldiers had no warm clothes, little food, and many had no shoes.",
+                    "About 2,000 soldiers died from cold, hunger, and disease—but NOT from fighting!"
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "Kept the army together through hardship" },
+                    { name: "Baron von Steuben", side: "Continental", role: "Prussian officer who trained the army" },
+                    { name: "Marquis de Lafayette", side: "Continental", role: "French volunteer who helped soldiers" }
+                ],
+                scenario: {
+                    category: "survival",
+                    description: "It's been weeks at Valley Forge. You have no shoes—your feet are bleeding and frostbitten. You wrap rags around them but blood still seeps through. There's barely any food—just 'fire cake' (flour and water baked on a rock). You're starving. Many soldiers are deserting (leaving). Your enlistment ends in two weeks. You could go home to your farm and family. Everyone would understand. Do you stay with Washington or go home?",
+                    threshold: 18,
+                    explanation: "Valley Forge was not a battle—it was a test of endurance and loyalty. About 12,000 soldiers entered Valley Forge. By February, 2,000 had died and 3,000 had deserted. But those who stayed showed incredible loyalty. Baron von Steuben, a Prussian officer, trained them to march and fight like professionals. They left Valley Forge as a real army!"
+                },
+                outcome: "Despite terrible suffering, most soldiers stayed. They built 2,000 log cabins for shelter. Baron von Steuben trained them every day in military drill and tactics. Martha Washington came to camp to help. When spring came, they marched out of Valley Forge as a professional, disciplined army—ready to win!",
+                significance: "Valley Forge showed Washington's leadership and the soldiers' determination. It proved that the Revolution wasn't just about winning battles—it was about believing in something worth suffering for. The training they received from von Steuben helped them win battles later in the war. Valley Forge turned farmer-soldiers into a professional army.",
+                primarySource: {
+                    quote: "Naked and starving as they are, we cannot enough admire the incomparable patience and fidelity of the soldiery.",
+                    attribution: "George Washington about his troops at Valley Forge"
+                },
+                didYouKnow: "You can still visit Valley Forge today! There are log cabins showing where soldiers lived, and you can walk the same grounds where Baron von Steuben trained the Continental Army. Every year in February, people remember the soldiers who stayed when they could have left."
+            },
+            {
+                id: 8,
+                name: "Battle of Monmouth",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Monmouth_June_28_1778_Oct_2020.jpg",
+                date: "June 28, 1778",
+                location: "Monmouth Courthouse, New Jersey",
+                subtitle: "The Hottest Day of the War",
+                mapDescription: "After leaving Philadelphia, British forces were marching to New York. Washington's newly trained army from Valley Forge caught up with them at Monmouth Courthouse. It was 100°F (38°C)! Soldiers on both sides collapsed from heatstroke. When General Lee ordered a confusing retreat, Washington himself rode to the front to rally the troops. The battle lasted all day in brutal heat.",
+                historicalContext: [
+                    "This was the first major battle after Valley Forge. Would von Steuben's training work?",
+                    "It was the hottest day of the year—over 100°F! More soldiers died from heat than bullets.",
+                    "The legend of Molly Pitcher comes from this battle."
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "Rallied troops after Lee's retreat" },
+                    { name: "General Charles Lee", side: "Continental", role: "Ordered confusing retreat (possibly on purpose?)" },
+                    { name: "General Henry Clinton", side: "British", role: "Led British forces to New York" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "It's 100 degrees and you've been fighting all morning. You're so hot you can barely think. Sweat is pouring down your face. Soldiers are collapsing from heatstroke on both sides. General Lee has ordered a retreat, but then Washington himself rides up and takes command! He's rallying the troops: 'Stand fast, men!' Your canteen is empty. You're exhausted. Do you follow Washington into battle in this heat?",
+                    threshold: 15,
+                    explanation: "This was the longest single-day battle of the entire war. The heat was brutal—soldiers called it 'the hottest day of the war.' Von Steuben's training from Valley Forge worked! American troops moved in formation just like professional European soldiers. When Washington took command from General Lee, he held the British all day. Neither side won, but Americans proved they were now a real army."
+                },
+                outcome: "The battle ended in a draw. British forces slipped away during the night and continued to New York. But this battle showed that Valley Forge training had worked—Americans could now fight toe-to-toe with British regulars. Washington's leadership saved the day when General Lee's retreat could have been a disaster.",
+                significance: "This battle proved that Valley Forge's training worked. Americans now fought with discipline and skill equal to British professionals. The legend of Molly Pitcher (a woman who carried water and possibly fired a cannon) shows women's important role in the war. Washington's ability to take command and rally troops showed his leadership.",
+                primarySource: {
+                    quote: "Never was I in so hot a fire. Their artillery played on us with great effect. Men fell like flies around me.",
+                    attribution: "Continental soldier at Monmouth"
+                },
+                didYouKnow: "The legend says 'Molly Pitcher' carried water to soldiers during the battle. When her husband collapsed at his cannon, she took his place and fired it! Her real name was probably Mary Ludwig Hays. She might be buried in Pennsylvania. The story reminds us that women contributed to the Revolution too!"
+            },
+            {
+                id: 9,
+                name: "Battle of Kings Mountain",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Kings_Mountain_Oct_7_1780_Oct_2020.jpg",
+                date: "October 7, 1780",
+                location: "Kings Mountain, South Carolina",
+                subtitle: "Frontier Patriots Rise",
+                mapDescription: "By 1780, the war had moved to the South. British Major Ferguson led 1,100 Loyalist soldiers (Americans loyal to Britain) into the Carolina backcountry. Frontier 'Overmountain Men' from Tennessee, Virginia, and Carolina formed militia groups. They surrounded Ferguson's position on Kings Mountain and attacked uphill from all sides at once.",
+                historicalContext: [
+                    "After 1778, the British changed strategy and focused on conquering the South.",
+                    "This battle was Patriot Americans fighting Loyalist Americans—neighbors against neighbors.",
+                    "Frontier riflemen were some of the best shots in the world."
+                ],
+                keyCommanders: [
+                    { name: "Colonel William Campbell", side: "Patriot", role: "Led Virginia militia" },
+                    { name: "Colonel Isaac Shelby", side: "Patriot", role: "Led frontier riflemen" },
+                    { name: "Major Patrick Ferguson", side: "Loyalist", role: "Only British officer in the battle, all others were Americans" }
+                ],
+                scenario: {
+                    category: "planning",
+                    description: "You're a frontier rifleman from Tennessee. Major Ferguson sent a message threatening to 'lay waste to your country with fire and sword' if you don't support the King. You and 900 other backcountry men have tracked Ferguson's Loyalist force for days. Now he's on top of Kings Mountain. Your leaders say: 'Attack uphill from all sides at once. Use trees for cover. Pick your shots carefully.' It's risky attacking uphill. Do you trust the plan?",
+                    threshold: 14,
+                    explanation: "Frontier riflemen were expert shots. Unlike muskets, their rifles were accurate at long range. They used trees and rocks for cover, firing at officers first. Ferguson's Loyalists used bayonets (which rifles didn't have), but the Patriots kept their distance and picked them off. Within an hour, it was over."
+                },
+                outcome: "In one hour of fighting, the Patriots won a complete victory. Major Ferguson was killed (shot multiple times). Patriots captured 700 Loyalists and killed or wounded 400. Only 28 Patriots died. After the battle, some Patriot leaders hanged captured Loyalists, which was controversial even then.",
+                significance: "This battle stopped the British advance in the South. British General Cornwallis had to retreat back to South Carolina. Thomas Jefferson called it 'the turning point of success' in the South. It showed that Loyalist support in the South wasn't as strong as the British hoped. This battle led directly to the Yorktown campaign.",
+                primarySource: {
+                    quote: "Colonel Campbell, Colonel Campbell, for God's sake quit! This is murder!",
+                    attribution: "A Patriot officer, trying to stop the killing after Loyalists surrendered"
+                },
+                didYouKnow: "This battle shows the war was also a civil war. All but one officer were Americans—they were fighting each other over loyalty to Britain or independence. Some families were split, with brothers fighting on opposite sides. After the war, these neighbors had to learn to live together again."
+            },
+            {
+                id: 10,
+                name: "Siege of Yorktown",
+                mapUrl: "https://www.battlefields.org/sites/default/files/styles/wysiwyg_full/public/Yorktown_Sept_28_Oct_19_1781_Oct_2020.jpg",
+                date: "September 28 - October 19, 1781",
+                location: "Yorktown, Virginia",
+                subtitle: "The Final Victory",
+                mapDescription: "British General Cornwallis moved his 8,000-man army to Yorktown on the Virginia coast, expecting the British Navy to protect him. But the French Navy defeated the British fleet, trapping Cornwallis! Washington and French General Rochambeau marched 16,000 American and French soldiers from New York. They surrounded Yorktown by land while French ships blocked escape by sea. Cornwallis was trapped with no hope of rescue.",
+                historicalContext: [
+                    "British General Cornwallis moved his army to Yorktown on the Virginia coast.",
+                    "Washington and French General Rochambeau marched south with their armies—450 miles!",
+                    "The French navy arrived and blocked Yorktown from the sea. Cornwallis was trapped with no escape!"
+                ],
+                keyCommanders: [
+                    { name: "General George Washington", side: "Continental", role: "American commander" },
+                    { name: "General Rochambeau", side: "French", role: "French army commander with 7,800 soldiers" },
+                    { name: "Admiral de Grasse", side: "French", role: "French navy commander who blocked the sea" },
+                    { name: "General Cornwallis", side: "British", role: "Trapped British commander" }
+                ],
+                scenario: {
+                    category: "combat",
+                    description: "It's October 14th, 1781, nighttime. You're preparing for a dangerous attack on British fortifications called 'redoubts.' Alexander Hamilton is leading 400 men to capture Redoubt 10. Lafayette is nearby with another force. Washington himself is watching from headquarters. If you succeed, the British will have to surrender. But the attack is dangerous—you must charge with unloaded muskets (bayonets only) to keep surprise. Are you ready?",
+                    threshold: 16,
+                    explanation: "American and French forces worked together perfectly. They dug trenches closer and closer to British positions for weeks. On October 14, Hamilton and Lafayette led nighttime attacks that captured two key British forts. When Cornwallis tried to escape across the York River, a storm stopped him. He was completely trapped with no hope of rescue."
+                },
+                outcome: "On October 19, 1781, Cornwallis surrendered his entire army of 8,000 men. British musicians played a song called 'The World Turned Upside Down'—because no one thought American colonists could beat the British Empire! French and American soldiers stood in two lines as British soldiers marched between them, laying down their weapons.",
+                significance: "Yorktown was the last major battle of the Revolutionary War. It convinced Britain to negotiate for peace. The Treaty of Paris wasn't signed until 1783, but after Yorktown, everyone knew America had won its independence. This victory only happened because France helped—their navy blocked Cornwallis's escape and their army helped surround him.",
+                primarySource: {
+                    quote: "I have the mortification to inform Your Excellency that I have been forced to surrender the troops under my command.",
+                    attribution: "General Cornwallis in his surrender letter"
+                },
+                didYouKnow: "Cornwallis was so upset about surrendering that he pretended to be sick and didn't attend the surrender ceremony! He sent his second-in-command instead. Washington was also upset—so he sent HIS second-in-command to accept the sword. Neither top general was there for the surrender!"
+            }
+        ];
+
+        // Game state
+        let selectedAttributes = [];
+        let selectedSupplies = [];
+        let currentBattle = 0;
+        let totalScore = 0;
+        let battlesWon = 0;
+        let battlesWounded = 0;
+        let battlesDied = 0;
+        let battleResults = [];
+        let isWounded = false;
+
+        // MAYER'S SEGMENTING PRINCIPLE: Show content in manageable pieces
+        function startGame() {
+            showPhase('phase-attributes');
+            renderAttributes();
+        }
+
+        function renderAttributes() {
+            const grid = document.getElementById('attributes-grid');
+            grid.innerHTML = '';
+            
+            ATTRIBUTES.forEach((attr, index) => {
+                const div = document.createElement('div');
+                div.className = 'selection-item';
+                div.innerHTML = `
+                    <div class="item-name">
+                        <span class="item-icon">${attr.icon}</span>
+                        ${attr.name}
+                    </div>
+                    <div class="item-description">${attr.description}</div>
+                    <div class="item-benefits">${attr.benefits}</div>
+                    <div class="item-drawbacks">${attr.drawbacks}</div>
+                `;
+                div.onclick = () => selectAttribute(index, div);
+                grid.appendChild(div);
+            });
+        }
+
+        function selectAttribute(index, element) {
+            const attr = ATTRIBUTES[index];
+            const attrIndex = selectedAttributes.findIndex(a => a.name === attr.name);
+            
+            if (attrIndex > -1) {
+                selectedAttributes.splice(attrIndex, 1);
+                element.classList.remove('selected');
+            } else if (selectedAttributes.length < 2) {
+                selectedAttributes.push(attr);
+                element.classList.add('selected');
+            }
+            
+            document.getElementById('attr-count').textContent = selectedAttributes.length;
+            document.getElementById('attr-continue').disabled = selectedAttributes.length !== 2;
+        }
+
+        function continueToSupplies() {
+            showPhase('phase-supplies');
+            renderSupplies();
+        }
+
+        function renderSupplies() {
+            const grid = document.getElementById('supplies-grid');
+            grid.innerHTML = '';
+            
+            SUPPLIES.forEach((supply, index) => {
+                const div = document.createElement('div');
+                div.className = 'selection-item';
+                div.innerHTML = `
+                    <div class="item-name">
+                        <span class="item-icon">${supply.icon}</span>
+                        ${supply.name}
+                    </div>
+                    <div class="item-description">${supply.description}</div>
+                    <div class="item-benefits">${supply.benefits}</div>
+                    <div class="item-drawbacks">${supply.drawbacks}</div>
+                `;
+                div.onclick = () => selectSupply(index, div);
+                grid.appendChild(div);
+            });
+        }
+
+        function selectSupply(index, element) {
+            const supply = SUPPLIES[index];
+            const supplyIndex = selectedSupplies.findIndex(s => s.name === supply.name);
+            
+            if (supplyIndex > -1) {
+                selectedSupplies.splice(supplyIndex, 1);
+                element.classList.remove('selected');
+            } else if (selectedSupplies.length < 5) {
+                selectedSupplies.push(supply);
+                element.classList.add('selected');
+            }
+            
+            document.getElementById('supply-count').textContent = selectedSupplies.length;
+            document.getElementById('supply-continue').disabled = selectedSupplies.length !== 5;
+        }
+
+        function startBattles() {
+            showPhase('phase-battle');
+            currentBattle = 0;
+            showBattle();
+        }
+
+        // MAYER'S MULTIMEDIA + SPATIAL CONTIGUITY: Present related information together
+        function showBattle() {
+            const battle = BATTLES[currentBattle];
+            const content = document.getElementById('battle-content');
+            
+            let html = `
+                <div class="battle-header">
+                    <div class="battle-title">${battle.name}</div>
+                    <div class="battle-date">${battle.date} • ${battle.location}</div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${((currentBattle + 1) / BATTLES.length) * 100}%">
+                        Battle ${currentBattle + 1} of ${BATTLES.length}
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; color: var(--continental-blue); font-size: 1.5rem;">
+                    "${battle.subtitle}"
+                </h3>
+
+                <div class="section-divider">
+                    <strong>📚 Learn About This Battle</strong>
+                </div>
+            `;
+
+            // Historical Context
+            html += `<div class="info-box">
+                <h3>What Was Happening?</h3>`;
+            battle.historicalContext.forEach(context => {
+                html += `<p class="intro-text">• ${context}</p>`;
+            });
+            html += `</div>`;
+
+            // Map with image
+            html += `
+                <div class="map-container">
+                    <h3 style="margin-top: 0;">Battle Map & Overview</h3>
+                    <div class="map-placeholder">
+                        <img src="${battle.mapUrl}" 
+                             alt="Map of ${battle.name}" 
+                             style="max-width: 100%; height: auto; border: 2px solid var(--aged-brown); border-radius: 5px;"
+                             onerror="this.parentElement.innerHTML='<div class=\\'map-icon\\'>🗺️</div><div>${battle.mapDescription.replace(/'/g, "\\'")}</div>'">
+                    </div>
+                    <p style="font-size: 0.9rem; font-style: italic; margin-top: 10px; text-align: center; color: var(--aged-brown);">
+                        ${battle.mapDescription}
+                    </p>
+                </div>
+            `;
+
+            // Key Commanders
+            html += `<div class="info-box">
+                <h3>Important People in This Battle</h3>`;
+            battle.keyCommanders.forEach(cmd => {
+                html += `<p><strong>${cmd.name}</strong> (${cmd.side}): ${cmd.role}</p>`;
+            });
+            html += `</div>`;
+
+            // Scenario
+            const categoryClass = battle.scenario.category;
+            const categoryName = battle.scenario.category.charAt(0).toUpperCase() + battle.scenario.category.slice(1);
+            const categoryIcon = categoryClass === 'planning' ? '📋' : 
+                                 categoryClass === 'combat' ? '⚔️' : 
+                                 categoryClass === 'survival' ? '🏕️' : '🎖️';
+
+            html += `
+                <div class="section-divider">
+                    <strong>⚔️ Your Challenge</strong>
+                </div>
+
+                <div class="scenario-box ${categoryClass}">
+                    <div class="scenario-category ${categoryClass}">
+                        <span class="scenario-category-icon">${categoryIcon}</span>
+                        ${categoryName} Challenge
+                    </div>
+                    <div class="scenario-description">${battle.scenario.description}</div>
+                </div>
+
+                <div class="info-box important">
+                    <p><strong>Your Mission:</strong> Roll the dice to see if you survive this challenge. You need to score <strong>${battle.scenario.threshold} or higher</strong> to succeed!</p>
+                </div>
+
+                <div class="dice-container">
+                    <button class="button" onclick="rollDice()">🎲 Roll the Dice 🎲</button>
+                </div>
+            `;
+
+            content.innerHTML = html;
+        }
+
+        // MAYER'S MODALITY: Visual (dice) + text feedback
+        function rollDice() {
+            const battle = BATTLES[currentBattle];
+            const die1 = Math.floor(Math.random() * 6) + 1;
+            const die2 = Math.floor(Math.random() * 6) + 1;
+            const baseRoll = die1 + die2;
+            
+            // Calculate bonuses
+            const category = battle.scenario.category;
+            let attrBonus = selectedAttributes.reduce((sum, attr) => sum + (attr.bonuses[category] || 0), 0);
+            let supplyBonus = selectedSupplies.reduce((sum, supply) => sum + (supply.bonuses[category] || 0), 0);
+            
+            // Wounded penalty
+            if (isWounded) {
+                attrBonus -= 2;
+                supplyBonus -= 2;
+            }
+            
+            const totalBonus = attrBonus + supplyBonus;
+            const finalScore = baseRoll + totalBonus;
+            
+            // Determine outcome
+            let outcome;
+            let outcomeClass;
+            let outcomeIcon;
+            let scoreChange;
+            
+            if (finalScore >= battle.scenario.threshold) {
+                outcome = "Survived";
+                outcomeClass = "survived";
+                outcomeIcon = "✓";
+                scoreChange = finalScore;
+                battlesWon++;
+                isWounded = false;
+            } else if (finalScore >= battle.scenario.threshold - 3) {
+                outcome = "Were Wounded";
+                outcomeClass = "wounded";
+                outcomeIcon = "⚠";
+                scoreChange = finalScore - 5;
+                battlesWounded++;
+                isWounded = true;
+            } else {
+                outcome = "Were Killed";
+                outcomeClass = "killed";
+                outcomeIcon = "✝";
+                scoreChange = finalScore - 10;
+                battlesDied++;
+                isWounded = false;
+            }
+            
+            totalScore += scoreChange;
+            
+            battleResults.push({
+                battleName: battle.name,
+                score: finalScore,
+                threshold: battle.scenario.threshold,
+                outcome: outcome
+            });
+            
+            showBattleResult(battle, die1, die2, baseRoll, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange);
+        }
+
+        // COGNITIVE LOAD: Clear, organized feedback for 5th graders
+        function showBattleResult(battle, die1, die2, baseRoll, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange) {
+            const content = document.getElementById('battle-content');
+            
+            let html = `
+                <div class="battle-header">
+                    <div class="battle-title">${battle.name}</div>
+                    <div class="battle-date">${battle.date}</div>
+                </div>
+
+                <div class="dice-container">
+                    <div class="dice">🎲 ${die1}</div>
+                    <div class="dice">🎲 ${die2}</div>
+                </div>
+
+                <div class="result-box ${outcomeClass}">
+                    <div class="result-icon">${outcomeIcon}</div>
+                    <div class="result-title">You ${outcome}!</div>
+                    <div class="feedback">
+                        <strong>Your Dice Roll:</strong> ${die1} + ${die2} = ${baseRoll}<br>
+                        <strong>Your Bonuses:</strong> +${attrBonus + supplyBonus}<br>
+                        <strong>Final Score:</strong> ${finalScore}<br>
+                        <strong>Needed:</strong> ${battle.scenario.threshold}<br>
+                        <strong>Points Earned:</strong> ${scoreChange > 0 ? '+' : ''}${scoreChange}
+                    </div>
+                </div>
+            `;
+
+            // Bonus breakdown
+            html += `<div class="bonus-breakdown">
+                <h3 style="margin-top: 0;">How Your Choices Helped (or Hurt):</h3>`;
+            
+            selectedAttributes.forEach(attr => {
+                const bonus = attr.bonuses[battle.scenario.category] || 0;
+                const sign = bonus >= 0 ? '+' : '';
+                const className = bonus >= 0 ? 'positive' : 'negative';
+                html += `<div class="bonus-item">
+                    <span>${attr.icon} ${attr.name}</span>
+                    <span class="bonus-value ${className}">${sign}${bonus}</span>
+                </div>`;
+            });
+            
+            selectedSupplies.forEach(supply => {
+                const bonus = supply.bonuses[battle.scenario.category] || 0;
+                const sign = bonus >= 0 ? '+' : '';
+                const className = bonus >= 0 ? 'positive' : 'negative';
+                html += `<div class="bonus-item">
+                    <span>${supply.icon} ${supply.name}</span>
+                    <span class="bonus-value ${className}">${sign}${bonus}</span>
+                </div>`;
+            });
+
+            if (isWounded && outcome !== "Wounded") {
+                html += `<div class="bonus-item">
+                    <span>⚠ Wounded from Last Battle</span>
+                    <span class="bonus-value negative">-2</span>
+                </div>`;
+            }
+
+            html += `</div>`;
+
+            // What happened historically
+            html += `<div class="feedback-section">
+                <h3>📖 What Really Happened at ${battle.name}:</h3>
+                <p class="intro-text">${battle.outcome}</p>
+                <p class="intro-text"><strong>Why This Battle Mattered:</strong> ${battle.significance}</p>
+            </div>`;
+
+            // Explanation
+            html += `<div class="feedback-section">
+                <h3>💡 Understanding This Challenge:</h3>
+                <p class="intro-text">${battle.scenario.explanation}</p>
+            </div>`;
+
+            // Did you know
+            html += `<div class="info-box">
+                <h3>🌟 Did You Know?</h3>
+                <p class="intro-text">${battle.didYouKnow}</p>
+            </div>`;
+
+            // Primary source
+            html += `<div class="primary-source">
+                ${battle.primarySource.quote}
+                <div class="primary-source-attribution">
+                    — ${battle.primarySource.attribution}
+                </div>
+            </div>`;
+
+            // Better choices suggestion
+            if (outcome !== "Survived") {
+                html += `<div class="feedback-section">
+                    <h3>🎯 How You Could Have Done Better:</h3>
+                    <ul class="feedback-list">`;
+                
+                // Find best attributes not chosen
+                const bestAttrs = ATTRIBUTES
+                    .filter(a => !selectedAttributes.find(sa => sa.name === a.name))
+                    .sort((a, b) => (b.bonuses[battle.scenario.category] || 0) - (a.bonuses[battle.scenario.category] || 0))
+                    .slice(0, 2);
+                
+                bestAttrs.forEach(attr => {
+                    if (attr.bonuses[battle.scenario.category] > 0) {
+                        html += `<li class="positive">${attr.icon} <strong>${attr.name}</strong> would have given you +${attr.bonuses[battle.scenario.category]} for this ${battle.scenario.category} challenge.</li>`;
+                    }
+                });
+                
+                // Find best supplies not chosen
+                const bestSupplies = SUPPLIES
+                    .filter(s => !selectedSupplies.find(ss => ss.name === s.name))
+                    .sort((a, b) => (b.bonuses[battle.scenario.category] || 0) - (a.bonuses[battle.scenario.category] || 0))
+                    .slice(0, 2);
+                
+                bestSupplies.forEach(supply => {
+                    if (supply.bonuses[battle.scenario.category] > 0) {
+                        html += `<li class="positive">${supply.icon} <strong>${supply.name}</strong> would have given you +${supply.bonuses[battle.scenario.category]} for this challenge.</li>`;
+                    }
+                });
+                
+                html += `</ul></div>`;
+            }
+
+            // Continue button
+            if (currentBattle < BATTLES.length - 1) {
+                html += `<button class="button" onclick="nextBattle()">Continue to Next Battle →</button>`;
+            } else {
+                html += `<button class="button" onclick="showFinalResults()">See Your Final Results →</button>`;
+            }
+
+            content.innerHTML = html;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextBattle() {
+            currentBattle++;
+            showBattle();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // MAYER'S COHERENCE: Final results focused on key learning outcomes
+        function showFinalResults() {
+            showPhase('phase-results');
+            
+            const survivalRate = Math.round((battlesWon / BATTLES.length) * 100);
+            const avgScore = Math.round(totalScore / BATTLES.length);
+            
+            let medal = '';
+            let medalText = '';
+            
+            if (battlesWon >= 8) {
+                medal = '🏅';
+                medalText = 'Medal of Honor - Exceptional Patriot!';
+            } else if (battlesWon >= 6) {
+                medal = '⭐';
+                medalText = 'Distinguished Service - True Soldier!';
+            } else if (battlesWon >= 4) {
+                medal = '🎖️';
+                medalText = 'Continental Army Veteran';
+            } else {
+                medal = '⚔️';
+                medalText = 'Brave Patriot';
+            }
+            
+            let html = `
+                <div class="medal">${medal}</div>
+                <div class="final-score">
+                    ${medalText}
+                </div>
+                
+                <div class="info-box">
+                    <h3 style="margin-top: 0;">Your War Statistics:</h3>
+                    <p><strong>Battles Survived:</strong> ${battlesWon} out of ${BATTLES.length} (${survivalRate}%)</p>
+                    <p><strong>Times Wounded:</strong> ${battlesWounded}</p>
+                    <p><strong>Times Killed:</strong> ${battlesDied}</p>
+                    <p><strong>Total Score:</strong> ${totalScore} points</p>
+                    <p><strong>Average Per Battle:</strong> ${avgScore} points</p>
+                </div>
+
+                <div class="feedback-section">
+                    <h3>📊 Your Battle Results:</h3>
+                    <div class="bonus-breakdown">`;
+            
+            battleResults.forEach((result, index) => {
+                const icon = result.outcome === 'Survived' ? '✓' : 
+                            result.outcome === 'Wounded' ? '⚠' : '✝';
+                const className = result.outcome === 'Survived' ? 'positive' : 
+                                 result.outcome === 'Wounded' ? 'neutral' : 'negative';
+                html += `<div class="bonus-item">
+                    <span>${index + 1}. ${result.battleName}</span>
+                    <span class="bonus-value ${className}">${icon} ${result.outcome} (${result.score}/${result.threshold})</span>
+                </div>`;
+            });
+            
+            html += `</div></div>`;
+
+            // Historical context
+            html += `<div class="info-box important">
+                <h3>🇺🇸 The Real American Revolution:</h3>
+                <p class="intro-text">
+                    The American Revolution lasted from 1775 to 1783. About 230,000 men served in the Continental Army during the war. Many, like your soldier, fought in multiple battles. About 25,000 soldiers died—some in battle, but many more from disease, cold, and starvation.
+                </p>
+                <p class="intro-text">
+                    Your survival rate of ${survivalRate}% shows how dangerous it was to be a Revolutionary War soldier. But their sacrifice gave us the United States of America!
+                </p>
+            </div>`;
+
+            // Reflection assignment
+            html += `
+                <div class="section-divider">
+                    <strong>✍️ Reflection Assignment</strong>
+                </div>
+
+                <div class="reflection-section">
+                    <h3>Think About What You Learned:</h3>
+                    <p class="intro-text">
+                        Now that you've experienced the Revolutionary War through your soldier's eyes, it's time to reflect on what you learned. Choose <strong>3 questions</strong> to answer. Write 3-5 sentences for each question.
+                    </p>
+
+                    <div class="reflection-question">
+                        <strong>Question 1: Which battle do you think was most important to American victory? Why?</strong>
+                        <textarea class="reflection-textarea" placeholder="Write your answer here..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>Question 2: What was the hardest challenge Continental soldiers faced?</strong>
+                        <textarea class="reflection-textarea" placeholder="Think about combat, weather, supplies, or morale..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>Question 3: Why did soldiers stay at Valley Forge instead of going home?</strong>
+                        <textarea class="reflection-textarea" placeholder="What motivated them despite terrible suffering?"></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>Question 4: How important were allies (France) to American victory?</strong>
+                        <textarea class="reflection-textarea" placeholder="Think about specific battles where France helped..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>Question 5: If you could change your attributes and supplies, what would you choose and why?</strong>
+                        <textarea class="reflection-textarea" placeholder="Reflect on which scenarios were hardest for you..."></textarea>
+                    </div>
+                </div>
+
+                <div class="info-box important">
+                    <p><strong>To Your Teacher:</strong> Have students copy their reflection answers to a document to submit. You can also discuss these questions as a class!</p>
+                </div>
+
+                <button class="button" onclick="location.reload()">Play Again</button>
+            `;
+            
+            document.getElementById('final-results').innerHTML = html;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPhase(phaseId) {
+            document.querySelectorAll('.phase').forEach(phase => {
+                phase.classList.remove('active');
+            });
+            document.getElementById(phaseId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
