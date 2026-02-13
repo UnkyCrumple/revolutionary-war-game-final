@@ -342,7 +342,7 @@
 
         .map-placeholder {
             width: 100%;
-            min-height: 150px;
+            min-height: 200px;
             background: white;
             border: 2px solid var(--aged-brown);
             display: flex;
@@ -358,7 +358,7 @@
         .map-image {
             width: 100%;
             height: auto;
-            max-height: 150px;
+            max-height: 250px;
             object-fit: contain;
             border: 2px solid var(--aged-brown);
             background: white;
@@ -1431,7 +1431,7 @@
                     <div class="map-placeholder">
                         <img src="${battle.mapUrl}" 
                              alt="Map of ${battle.name}" 
-                             style="max-width: 100%; height: auto; border: 2px solid var(--aged-brown); border-radius: 5px;"
+                             style="max-width: 100%; height: auto; max-height: 250px; object-fit: contain; border: 2px solid var(--aged-brown); border-radius: 5px;"
                              onerror="this.parentElement.innerHTML='<div class=\\'map-icon\\'>🗺️</div><div>${battle.mapDescription.replace(/'/g, "\\'")}</div>'">
                     </div>
                     <p style="font-size: 0.9rem; font-style: italic; margin-top: 10px; text-align: center; color: var(--aged-brown);">
