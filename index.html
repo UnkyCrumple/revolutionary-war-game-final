@@ -705,6 +705,85 @@
             font-style: italic;
             color: var(--aged-brown);
         }
+
+        /* Commander Decision Question */
+        .commander-decision {
+            background: #FFF8E7;
+            border: 4px solid var(--continental-blue);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .commander-decision h3 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        .commander-decision .decision-question {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .decision-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .decision-options { grid-template-columns: 1fr; }
+        }
+
+        .decision-option {
+            background: white;
+            border: 3px solid var(--aged-brown);
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .decision-option:hover {
+            background: var(--dark-parchment);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow);
+            border-color: var(--continental-blue);
+        }
+
+        .decision-option.selected {
+            background: var(--gold);
+            border-color: var(--continental-blue);
+            border-width: 4px;
+            box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
+        }
+
+        .decision-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .decision-result.correct {
+            background: #d4edda;
+            border: 2px solid #2d5016;
+            color: #2d5016;
+        }
+
+        .decision-result.incorrect {
+            background: #fff3cd;
+            border: 2px solid #8B6914;
+            color: #8B6914;
+        }
     </style>
 </head>
 <body>
@@ -988,7 +1067,16 @@
                     quote: "Stand your ground. Don't fire unless fired upon, but if they mean to have a war, let it begin here.",
                     attribution: "Captain John Parker at Lexington Green"
                 },
-                didYouKnow: "Nobody knows who fired the first shot at Lexington. Both sides blamed each other. Some historians think it might have been an accident! That's why it's called 'the shot heard round the world'—it started a revolution but no one knows who fired it."
+                didYouKnow: "Nobody knows who fired the first shot at Lexington. Both sides blamed each other. Some historians think it might have been an accident! That's why it's called 'the shot heard round the world'—it started a revolution but no one knows who fired it.",
+                commanderQuestion: {
+                    question: "The British are retreating from Concord back to Boston. As a militia commander, what should you order your men to do?",
+                    options: [
+                        "Line up in the road and fight the British in a traditional battle formation",
+                        "Hide behind trees, walls, and rocks and fire at the British as they march past"
+                    ],
+                    correctIndex: 1,
+                    explanation: "The colonial militia used guerrilla tactics—firing from behind cover along the 16-mile retreat route. This unconventional approach inflicted heavy casualties on the British and proved far more effective than standing in open formation against trained soldiers."
+                }
             },
             {
                 id: 2,
@@ -1020,7 +1108,16 @@
                     quote: "The rebels fought like devils, not like men. I never saw such determined fighters.",
                     attribution: "British officer after the battle"
                 },
-                didYouKnow: "The battle was actually fought on Breed's Hill, not Bunker Hill! But it's called the Battle of Bunker Hill because that's what people called it from the beginning. Bunker Hill is taller and nearby, so everyone thought that's where the fighting was."
+                didYouKnow: "The battle was actually fought on Breed's Hill, not Bunker Hill! But it's called the Battle of Bunker Hill because that's what people called it from the beginning. Bunker Hill is taller and nearby, so everyone thought that's where the fighting was.",
+                commanderQuestion: {
+                    question: "Your ammunition is running very low and the British are charging uphill again. As Colonel Prescott, what order do you give?",
+                    options: [
+                        "Fire immediately at long range to scare the British into retreating",
+                        "Hold fire until the British are extremely close to make every shot count"
+                    ],
+                    correctIndex: 1,
+                    explanation: "Colonel Prescott famously ordered his men to wait—'Don't fire until you see the whites of their eyes!' With limited ammunition, every shot had to count. This discipline devastated the British at close range, causing over 1,000 casualties in the first two assaults."
+                }
             },
             {
                 id: 3,
@@ -1052,7 +1149,16 @@
                     quote: "The rebels have done more in one night than my whole army would have done in months.",
                     attribution: "British General Howe, seeing the cannons on Dorchester Heights"
                 },
-                didYouKnow: "Henry Knox was only 25 years old and used to own a bookstore! He learned about artillery by reading books. He figured out how to move 60 tons of cannons across 300 miles in winter. Later he became Washington's Secretary of War!"
+                didYouKnow: "Henry Knox was only 25 years old and used to own a bookstore! He learned about artillery by reading books. He figured out how to move 60 tons of cannons across 300 miles in winter. Later he became Washington's Secretary of War!",
+                commanderQuestion: {
+                    question: "As General Washington, you need to force the British out of Boston. What is your strategy?",
+                    options: [
+                        "Place captured cannons on Dorchester Heights overlooking the city to threaten the British fleet",
+                        "Launch a direct assault across Boston Neck to storm the British defenses"
+                    ],
+                    correctIndex: 0,
+                    explanation: "Washington chose to place Henry Knox's cannons on Dorchester Heights, giving him a commanding position over Boston Harbor. The British realized their ships and troops were now in danger, and General Howe evacuated the entire city without a major battle—a brilliant strategic victory."
+                }
             },
             {
                 id: 4,
@@ -1084,7 +1190,16 @@
                     quote: "I fear we have not acted equal to the importance of the cause in which we are engaged.",
                     attribution: "George Washington after retreating from Long Island"
                 },
-                didYouKnow: "A mysterious fog appeared at dawn on August 30th, hiding the last American boats from British view. Many soldiers thought it was a miracle! Historians debate whether it was luck or weather, but that fog saved the Continental Army."
+                didYouKnow: "A mysterious fog appeared at dawn on August 30th, hiding the last American boats from British view. Many soldiers thought it was a miracle! Historians debate whether it was luck or weather, but that fog saved the Continental Army.",
+                commanderQuestion: {
+                    question: "Your army is surrounded on Brooklyn Heights with the East River behind you. As General Washington, what do you decide?",
+                    options: [
+                        "Stand and fight—surrender is not an option for the Continental Army",
+                        "Organize a secret nighttime evacuation by boat across the East River"
+                    ],
+                    correctIndex: 1,
+                    explanation: "Washington made the bold decision to evacuate his entire army of 9,000 men across the East River at night. Using every boat available and maintaining total silence, he saved the Continental Army from destruction. A fog at dawn hid the last boats. If he had stayed to fight, the Revolution could have ended right there."
+                }
             },
             {
                 id: 5,
@@ -1116,7 +1231,16 @@
                     quote: "These are the times that try men's souls. The summer soldier and the sunshine patriot will, in this crisis, shrink from the service of their country.",
                     attribution: "Thomas Paine, written just before the Delaware crossing"
                 },
-                didYouKnow: "The famous painting 'Washington Crossing the Delaware' shows daytime with a flag that didn't exist yet! The real crossing was at night, in a blizzard, with no flags flying. But the painting captures the courage it took to make this bold move."
+                didYouKnow: "The famous painting 'Washington Crossing the Delaware' shows daytime with a flag that didn't exist yet! The real crossing was at night, in a blizzard, with no flags flying. But the painting captures the courage it took to make this bold move.",
+                commanderQuestion: {
+                    question: "It's late December and your army is falling apart. Enlistments end in days. As General Washington, what do you do?",
+                    options: [
+                        "Cross the icy Delaware River on Christmas night to surprise the Hessians at Trenton",
+                        "Wait for spring and better weather before attempting any attack"
+                    ],
+                    correctIndex: 0,
+                    explanation: "Washington knew he couldn't wait—his army would literally disappear when enlistments ended on December 31st. The daring Christmas night crossing through a blizzard achieved complete surprise. The Hessians were caught off guard, and the stunning victory convinced soldiers to re-enlist and saved the Revolution."
+                }
             },
             {
                 id: 6,
@@ -1148,7 +1272,16 @@
                     quote: "The fortunes of war have made me your prisoner.",
                     attribution: "British General Burgoyne surrendering to General Gates"
                 },
-                didYouKnow: "Benedict Arnold was the hero of Saratoga! He was wounded in the leg during his brave charges. But three years later, he became America's most famous traitor by trying to sell West Point to the British. At Saratoga, though, he helped win America's most important victory."
+                didYouKnow: "Benedict Arnold was the hero of Saratoga! He was wounded in the leg during his brave charges. But three years later, he became America's most famous traitor by trying to sell West Point to the British. At Saratoga, though, he helped win America's most important victory.",
+                commanderQuestion: {
+                    question: "General Burgoyne's British army is nearby but weakening. Benedict Arnold wants to lead an aggressive charge. As the American commander, what do you allow?",
+                    options: [
+                        "Stay in your strong defensive positions and wait for the British to attack you",
+                        "Let Arnold lead a bold charge to break through the British lines"
+                    ],
+                    correctIndex: 1,
+                    explanation: "Arnold's aggressive charges at Bemis Heights broke the British lines and turned the battle into a decisive American victory. His bold leadership—even after being ordered to stay back—shattered British morale and led directly to Burgoyne's surrender of 5,000 men, convincing France to join the war."
+                }
             },
             {
                 id: 7,
@@ -1181,7 +1314,16 @@
                     quote: "Naked and starving as they are, we cannot enough admire the incomparable patience and fidelity of the soldiery.",
                     attribution: "George Washington about his troops at Valley Forge"
                 },
-                didYouKnow: "You can still visit Valley Forge today! There are log cabins showing where soldiers lived, and you can walk the same grounds where Baron von Steuben trained the Continental Army. Every year in February, people remember the soldiers who stayed when they could have left."
+                didYouKnow: "You can still visit Valley Forge today! There are log cabins showing where soldiers lived, and you can walk the same grounds where Baron von Steuben trained the Continental Army. Every year in February, people remember the soldiers who stayed when they could have left.",
+                commanderQuestion: {
+                    question: "Your army is starving and freezing at Valley Forge. Baron von Steuben, a Prussian military expert, offers to train your men. As General Washington, what do you prioritize?",
+                    options: [
+                        "Use the winter months for intense military training and drilling despite the harsh conditions",
+                        "Let the exhausted soldiers rest and recover—training can wait until spring"
+                    ],
+                    correctIndex: 0,
+                    explanation: "Washington embraced von Steuben's training program even during the brutal winter. Soldiers drilled daily in formation, bayonet use, and battlefield tactics. When they marched out of Valley Forge in spring, they were transformed from a ragged militia into a disciplined professional army capable of matching the British."
+                }
             },
             {
                 id: 8,
@@ -1213,7 +1355,16 @@
                     quote: "Never was I in so hot a fire. Their artillery played on us with great effect. Men fell like flies around me.",
                     attribution: "Continental soldier at Monmouth"
                 },
-                didYouKnow: "The legend says 'Molly Pitcher' carried water to soldiers during the battle. When her husband collapsed at his cannon, she took his place and fired it! Her real name was probably Mary Ludwig Hays. She might be buried in Pennsylvania. The story reminds us that women contributed to the Revolution too!"
+                didYouKnow: "The legend says 'Molly Pitcher' carried water to soldiers during the battle. When her husband collapsed at his cannon, she took his place and fired it! Her real name was probably Mary Ludwig Hays. She might be buried in Pennsylvania. The story reminds us that women contributed to the Revolution too!",
+                commanderQuestion: {
+                    question: "General Lee has ordered a confusing retreat. As General Washington, you arrive at the front lines. What do you do?",
+                    options: [
+                        "Accept the retreat and pull the army back to a safer position",
+                        "Take personal command, stop the retreat, and rally the troops to stand and fight"
+                    ],
+                    correctIndex: 1,
+                    explanation: "Washington rode directly to the front, stopped the retreat, and personally rallied his troops. His leadership transformed a potential disaster into a hard-fought draw. The newly trained Valley Forge army held their ground all day against British regulars, proving they were now a professional fighting force."
+                }
             },
             {
                 id: 9,
@@ -1245,7 +1396,16 @@
                     quote: "Colonel Campbell, Colonel Campbell, for God's sake quit! This is murder!",
                     attribution: "A Patriot officer, trying to stop the killing after Loyalists surrendered"
                 },
-                didYouKnow: "This battle shows the war was also a civil war. All but one officer were Americans—they were fighting each other over loyalty to Britain or independence. Some families were split, with brothers fighting on opposite sides. After the war, these neighbors had to learn to live together again."
+                didYouKnow: "This battle shows the war was also a civil war. All but one officer were Americans—they were fighting each other over loyalty to Britain or independence. Some families were split, with brothers fighting on opposite sides. After the war, these neighbors had to learn to live together again.",
+                commanderQuestion: {
+                    question: "Major Ferguson's Loyalist force is camped on top of Kings Mountain. As a Patriot militia commander, how do you attack?",
+                    options: [
+                        "Surround the mountain and attack from all sides at once, using trees for cover",
+                        "Charge straight up one side of the mountain in a concentrated assault"
+                    ],
+                    correctIndex: 0,
+                    explanation: "The Patriot militia surrounded Kings Mountain and attacked from all directions simultaneously. Using trees and rocks for cover, their expert riflemen picked off Loyalists from a distance. Ferguson's men couldn't defend every side at once. The battle was over in about an hour—a complete Patriot victory."
+                }
             },
             {
                 id: 10,
@@ -1278,7 +1438,16 @@
                     quote: "I have the mortification to inform Your Excellency that I have been forced to surrender the troops under my command.",
                     attribution: "General Cornwallis in his surrender letter"
                 },
-                didYouKnow: "Cornwallis was so upset about surrendering that he pretended to be sick and didn't attend the surrender ceremony! He sent his second-in-command instead. Washington was also upset—so he sent HIS second-in-command to accept the sword. Neither top general was there for the surrender!"
+                didYouKnow: "Cornwallis was so upset about surrendering that he pretended to be sick and didn't attend the surrender ceremony! He sent his second-in-command instead. Washington was also upset—so he sent HIS second-in-command to accept the sword. Neither top general was there for the surrender!",
+                commanderQuestion: {
+                    question: "British redoubts (small forts) are blocking your siege. As General Washington, how do you capture them?",
+                    options: [
+                        "Launch a quick nighttime bayonet assault to capture the redoubts by surprise",
+                        "Bombard the redoubts with cannon fire for several more weeks until they crumble"
+                    ],
+                    correctIndex: 0,
+                    explanation: "Washington ordered daring nighttime bayonet assaults on Redoubts 9 and 10. Alexander Hamilton led 400 men who charged with unloaded muskets to maintain surprise. Both redoubts fell in under 30 minutes! This allowed American cannons to move closer, making Cornwallis's position hopeless and forcing his surrender."
+                }
             }
         ];
 
@@ -1292,6 +1461,7 @@
         let battlesDied = 0;
         let battleResults = [];
         let isWounded = false;
+        let commanderChoice = null; // tracks the player's commander decision for current battle
 
         // MAYER'S SEGMENTING PRINCIPLE: Show content in manageable pieces
         function startGame() {
@@ -1466,12 +1636,42 @@
                     <p><strong>Your Mission:</strong> Roll the dice to see if you survive this challenge. You need to score <strong>${battle.scenario.threshold} or higher</strong> to succeed!</p>
                 </div>
 
+                <div class="section-divider">
+                    <strong>🧠 Commander's Decision</strong>
+                </div>
+
+                <div class="commander-decision">
+                    <h3>What Should the Commander Do?</h3>
+                    <p class="decision-question">${battle.commanderQuestion.question}</p>
+                    <div class="decision-options">
+                        <div class="decision-option" id="decision-0" onclick="selectCommanderChoice(0)">
+                            <strong>Option A:</strong> ${battle.commanderQuestion.options[0]}
+                        </div>
+                        <div class="decision-option" id="decision-1" onclick="selectCommanderChoice(1)">
+                            <strong>Option B:</strong> ${battle.commanderQuestion.options[1]}
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.95rem; color: var(--continental-blue); font-weight: 600;">
+                        Choose wisely! The correct answer gives a 1.25x bonus to your dice roll. An incorrect answer gives a 0.75x penalty.
+                    </p>
+                </div>
+
                 <div class="dice-container">
-                    <button class="button" onclick="rollDice()">🎲 Roll the Dice 🎲</button>
+                    <button class="button" id="roll-dice-btn" onclick="rollDice()" disabled>🎲 Roll the Dice 🎲</button>
+                    <p id="dice-hint" style="font-size: 0.95rem; color: var(--british-red); margin-top: 10px;">↑ Make your Commander's Decision above to unlock the dice</p>
                 </div>
             `;
 
+            commanderChoice = null;
             content.innerHTML = html;
+        }
+
+        function selectCommanderChoice(index) {
+            commanderChoice = index;
+            document.querySelectorAll('.decision-option').forEach(el => el.classList.remove('selected'));
+            document.getElementById('decision-' + index).classList.add('selected');
+            document.getElementById('roll-dice-btn').disabled = false;
+            document.getElementById('dice-hint').style.display = 'none';
         }
 
         // MAYER'S MODALITY: Visual (dice) + text feedback
@@ -1480,20 +1680,25 @@
             const die1 = Math.floor(Math.random() * 6) + 1;
             const die2 = Math.floor(Math.random() * 6) + 1;
             const baseRoll = die1 + die2;
-            
+
+            // Commander decision multiplier
+            const isCorrectDecision = commanderChoice === battle.commanderQuestion.correctIndex;
+            const decisionMultiplier = isCorrectDecision ? 1.25 : 0.75;
+            const multipliedRoll = Math.round(baseRoll * decisionMultiplier);
+
             // Calculate bonuses
             const category = battle.scenario.category;
             let attrBonus = selectedAttributes.reduce((sum, attr) => sum + (attr.bonuses[category] || 0), 0);
             let supplyBonus = selectedSupplies.reduce((sum, supply) => sum + (supply.bonuses[category] || 0), 0);
-            
+
             // Wounded penalty
             if (isWounded) {
                 attrBonus -= 2;
                 supplyBonus -= 2;
             }
-            
+
             const totalBonus = attrBonus + supplyBonus;
-            const finalScore = baseRoll + totalBonus;
+            const finalScore = multipliedRoll + totalBonus;
             
             // Determine outcome
             let outcome;
@@ -1533,11 +1738,11 @@
                 outcome: outcome
             });
             
-            showBattleResult(battle, die1, die2, baseRoll, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange);
+            showBattleResult(battle, die1, die2, baseRoll, multipliedRoll, decisionMultiplier, isCorrectDecision, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange);
         }
 
         // COGNITIVE LOAD: Clear, organized feedback for 5th graders
-        function showBattleResult(battle, die1, die2, baseRoll, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange) {
+        function showBattleResult(battle, die1, die2, baseRoll, multipliedRoll, decisionMultiplier, isCorrectDecision, attrBonus, supplyBonus, finalScore, outcome, outcomeClass, outcomeIcon, scoreChange) {
             const content = document.getElementById('battle-content');
             
             let html = `
@@ -1551,12 +1756,23 @@
                     <div class="dice">🎲 ${die2}</div>
                 </div>
 
+                <div class="commander-decision">
+                    <h3>🧠 Your Commander's Decision</h3>
+                    <div class="decision-result ${isCorrectDecision ? 'correct' : 'incorrect'}">
+                        ${isCorrectDecision
+                            ? '✓ Correct! You chose the historically strategic option. Dice multiplied by 1.25x!'
+                            : '✗ Not quite! That wasn\'t the best strategic choice. Dice multiplied by 0.75x.'}
+                    </div>
+                    <p class="intro-text" style="margin-top: 15px; margin-bottom: 0;">${battle.commanderQuestion.explanation}</p>
+                </div>
+
                 <div class="result-box ${outcomeClass}">
                     <div class="result-icon">${outcomeIcon}</div>
                     <div class="result-title">You ${outcome}!</div>
                     <div class="feedback">
                         <strong>Your Dice Roll:</strong> ${die1} + ${die2} = ${baseRoll}<br>
-                        <strong>Your Bonuses:</strong> +${attrBonus + supplyBonus}<br>
+                        <strong>Commander Decision:</strong> ${baseRoll} × ${decisionMultiplier} = ${multipliedRoll}<br>
+                        <strong>Your Bonuses:</strong> ${attrBonus + supplyBonus >= 0 ? '+' : ''}${attrBonus + supplyBonus}<br>
                         <strong>Final Score:</strong> ${finalScore}<br>
                         <strong>Needed:</strong> ${battle.scenario.threshold}<br>
                         <strong>Points Earned:</strong> ${scoreChange > 0 ? '+' : ''}${scoreChange}
